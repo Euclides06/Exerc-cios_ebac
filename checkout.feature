@@ -1,69 +1,69 @@
-Feature: tela de checkout
+Fucionalidade: tela de checkout
 como cliente da loja
 quero finalizar minha compra 
 para receber os produtos selecionados
 
-Background: 
-Given que eu esteja autenticado na loja 
-And tenha um produto disponivel no carrinho 
-And que eu acesse a pagina de checkout
+contexto: 
+dado que eu esteja autenticado na loja 
+e tenha um produto disponivel no carrinho 
+e que eu acesse a pagina de checkout
 
 
-Scenario: finalizar compra com dados validos
-When eu informar um endereco de entrega valido
-And selecionar uma opcao de frete 
-And informar os dados de um cartao valido
-And confirma compra
-Then deve exibir a mensagem 'compra realizada com sucesso'
-And deve exibir o numero pedido
-
-
-
-Scenario: tentar finalizar compra sem endereco de entrega 
-When eu deixar o endereco de entrega em branco
-And tentar comfirma a compra 
-Then deve exibir a mensagem de alerta 'informe o endereco de entrega'
-And nao deve criar um pedido
-
-
-Scenario: tentar finalizar compra sem selecionar o pagamento
-When eu informar um endereco de entrega valido
-And selecionar uma opcao de frete
-And nao selecionar uma forma de pagamento
-And tentar comfirmar a compra 
-Then deve exibir uma mensagem de alerta 'selecione uma forma de pagamento'
-And nao deve criar uma pedido
-
-
-Scenario: tentar finalizar compra com pagamento recusado
-When eu informar um endereco de entrega valido 
-And selecionar uma opcao de frete 
-And informar os dados de um cartao valido
-And comfirma compra
-And o pagamento for recusado pela operadora 
-Then deve exibir uma mensagem de alerta 'pagamento recusado'
-And nao deve comfirma o pedido como pago 
-And deve permitir uma nova tentativade pagamento
-
-
-Scenario: conferir o valor total de compra
-Given que o subtotal dos produtos seja de R$ 100,00
-And que o frete custe R$ 15,00
-And que nao existem descontos aplicados 
-When eu vusualizar o resumo da compra
-Then deve exibir o valor total de R$ 115,00
+cenario: finalizar compra com dados validos
+quando eu informar um endereco de entrega valido
+e selecionar uma opcao de frete 
+e informar os dados de um cartao valido
+e confirma compra
+entao deve exibir a mensagem 'compra realizada com sucesso'
+e deve exibir o numero pedido
 
 
 
-Scenario Outline: validar campos obrigatorios do endereco 
-When eu preencher os demais campos do endereco corretamente 
-And deixar o campo '<campo>' em branco
-And tentar continuar para o pagamento 
-Then deve exibir a mensagem de alerta '<mensagem>'
-And nao deve avancar para a etapa de pagamento
+cenario: tentar finalizar compra sem endereco de entrega 
+quando eu deixar o endereco de entrega em branco
+e tentar comfirma a compra 
+entao deve exibir a mensagem de alerta 'informe o endereco de entrega'
+e nao deve criar um pedido
 
 
-Examples:
+cenario: tentar finalizar compra sem selecionar o pagamento
+quando eu informar um endereco de entrega valido
+e selecionar uma opcao de frete
+e nao selecionar uma forma de pagamento
+e tentar comfirmar a compra 
+entao deve exibir uma mensagem de alerta 'selecione uma forma de pagamento'
+e nao deve criar uma pedido
+
+
+cenario: tentar finalizar compra com pagamento recusado
+quando eu informar um endereco de entrega valido 
+e selecionar uma opcao de frete 
+e informar os dados de um cartao valido
+e comfirma compra
+e o pagamento for recusado pela operadora 
+entao deve exibir uma mensagem de alerta 'pagamento recusado'
+e nao deve comfirma o pedido como pago 
+e deve permitir uma nova tentativade pagamento
+
+
+cenario: conferir o valor total de compra
+dado que o subtotal dos produtos seja de R$ 100,00
+e que o frete custe R$ 15,00
+e que nao existem descontos aplicados 
+quando eu vusualizar o resumo da compra
+entao deve exibir o valor total de R$ 115,00
+
+
+
+cenario: validar campos obrigatorios do endereco 
+quando eu preencher os demais campos do endereco corretamente 
+e deixar o campo '<campo>' em branco
+e tentar continuar para o pagamento 
+entao deve exibir a mensagem de alerta '<mensagem>'
+e nao deve avancar para a etapa de pagamento
+
+
+Examplos:
    | campo | mensagem  |
    | nome  | informar o nome do destinario |
    | CEP.  | informa o CEP |
