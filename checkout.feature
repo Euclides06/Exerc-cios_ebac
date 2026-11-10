@@ -1,69 +1,58 @@
-Fucionalidade: tela de checkout
+Funcionalidade: tela de checkout
 como cliente da loja
 quero finalizar minha compra 
 para receber os produtos selecionados
 
-contexto: 
-dado que eu esteja autenticado na loja 
-e tenha um produto disponivel no carrinho 
-e que eu acesse a pagina de checkout
-
-
-cenario: finalizar compra com dados validos
-quando eu informar um endereco de entrega valido
-e selecionar uma opcao de frete 
-e informar os dados de um cartao valido
-e confirma compra
-entao deve exibir a mensagem 'compra realizada com sucesso'
-e deve exibir o numero pedido
+Contexto: 
+Dado que eu esteja autenticado na loja 
+E tenha um produto disponivel no carrinho e que eu acesse a pagina de checkout
 
 
 
-cenario: tentar finalizar compra sem endereco de entrega 
-quando eu deixar o endereco de entrega em branco
-e tentar comfirma a compra 
-entao deve exibir a mensagem de alerta 'informe o endereco de entrega'
-e nao deve criar um pedido
-
-
-cenario: tentar finalizar compra sem selecionar o pagamento
-quando eu informar um endereco de entrega valido
-e selecionar uma opcao de frete
-e nao selecionar uma forma de pagamento
-e tentar comfirmar a compra 
-entao deve exibir uma mensagem de alerta 'selecione uma forma de pagamento'
-e nao deve criar uma pedido
-
-
-cenario: tentar finalizar compra com pagamento recusado
-quando eu informar um endereco de entrega valido 
-e selecionar uma opcao de frete 
-e informar os dados de um cartao valido
-e comfirma compra
-e o pagamento for recusado pela operadora 
-entao deve exibir uma mensagem de alerta 'pagamento recusado'
-e nao deve comfirma o pedido como pago 
-e deve permitir uma nova tentativade pagamento
-
-
-cenario: conferir o valor total de compra
-dado que o subtotal dos produtos seja de R$ 100,00
-e que o frete custe R$ 15,00
-e que nao existem descontos aplicados 
-quando eu vusualizar o resumo da compra
-entao deve exibir o valor total de R$ 115,00
+Cenario: finalizar compra com dados validos
+Quando eu informar um endereco de entrega valido
+E selecionar uma opcao de frete e informar os dados de um cartao valido e comfirmar compra
+Entao  deve exibir a mensagem 'compra realizada com sucesso'
 
 
 
-cenario: validar campos obrigatorios do endereco 
-quando eu preencher os demais campos do endereco corretamente 
-e deixar o campo '<campo>' em branco
-e tentar continuar para o pagamento 
-entao deve exibir a mensagem de alerta '<mensagem>'
-e nao deve avancar para a etapa de pagamento
+
+Cenario: tentar finalizar compra sem endereco de entrega 
+Quando eu deixar o endereco de entrega em branco
+E tentar comfirma a compra 
+Entao deve exibir a mensagem de alerta 'informe o endereco de entrega'
 
 
-Examplos:
+
+Cenario: tentar finalizar compra sem selecionar o pagamento
+Quando eu informar um endereco de entrega valido
+E selecionar uma opcao de frete e nao selecionar uma forma de pagamento e tentar comfirmar a compra 
+Entao deve exibir uma mensagem de alerta 'selecione uma forma de pagamento'
+
+
+
+Cenario: tentar finalizar compra com pagamento recusado
+Quando eu informar um endereco de entrega valido 
+E selecionar uma opcao de frete e informar os dados de um cartao valido e comfirma compra e o pagamento for recusado pela operadora 
+Entao deve exibir uma mensagem de alerta 'pagamento recusado'
+
+
+
+Cenario: conferir o valor total de compra
+Dado que o subtotal dos produtos seja de R$ 100,00
+E que o frete custe R$ 15,00 e que nao existem descontos aplicados 
+Quando eu vusualizar o resumo da compra
+Entao deve exibir o valor total de R$ 115,00
+
+
+
+Cenario: validar campos obrigatorios do endereco 
+Quando eu preencher os demais campos do endereco corretamente 
+E deixar o campo '<campo>' em branco e tentar continuar para o pagamento 
+Entao deve exibir a mensagem de alerta '<mensagem>'
+
+
+Exemplos:
    | campo | mensagem  |
    | nome  | informar o nome do destinario |
    | CEP.  | informa o CEP |

@@ -1,38 +1,44 @@
-Fucionalidade: tela de configuracao
-como usuario do sistema
-quero acessar as configuracoes 
-para vusualizar e alterar minhas preferencias 
+Funcionalidade:configuracao de produtos
+como administrador do sistema
+quero aconfigurar os produtos
+para gerenciar os produtos cadastrados
 
-contexto:
-dado que eu estou na pagina de configuracao 
+Contexto:
+Dado que eu estou logado no sistema
 
-cenario: acessar configuracaes 
-quando eu clicar no menu 'configuracoes'
-entao deve exibir a tela de configuracoes 
+Cenario: acessar configuracaes de produtos
+Dado que estou na pagina inicial
+Quando clicar no menu 'produtos'
+Entao deve exibir a tela de configuracao de produtos
 
-cenario: alterar nome do usuario 
-dado que eu estou na tela de configuracoes 
-quando eu informa a senha atual 'euclides'
-e eu clicar em 'salvar'
-entao deve exibir uma mesagem de sucesso 'configuracoes salvas'
+Cenario: Cadastrar novo produto
+Dado que eu estou na tela de configuracoes de produtos
+Quando preencher o nome e o preco do produto 
+E  clicar em 'salvar'
+Entao deve exibir uma mensagem  'produto cadastrado com sucesso'
 
-cenario: alterar senha
-dado que eu estou na tela de configuracoes
-quando eu informa a a senha atual 'teste123'
-e eu informar a nova senha 'nova123'
-e eu clicar em 'salvar'
-entao deve exibir uma mensagem de sucesso 'senha alterada'
+Cenario: validar campos obrigatorios
+Dado que eu estou na tela de cadastro de produtos
+Quando deixar os campos obrigatorios vazios 
+E  clicar em 'salvar'
+Entao deve exibir uma mensagem de validacao
 
-cenario: senha atual invalida 
-dado que estou na tela de configuracaes
-quando eu informa a senha atual 'senha errada'
-e eu informa a nova senha 'nova123'
-e eu clicar em 'salvar'
-entao deve exibir uma mensagem de aleta 'senha atual invalida'
+Cenario: editar produto 
+Dado que existe um produto cadastrado
+Quando alterar as informacoes do produto
+E clicar em 'salvar'
+Entao deve exibir uma mensagem 'produto atualizado com sucesso'
 
-cenario:cancelar alteracao 
-dado que estou na de configuracaes
-quando eu alterar uma configuracao
-e eu clicar 'cancelar'
-entao as alteracoes nao devem ser salvas
+Cenario: excluir produto
+Dado que existe um produto cadastrado
+Quando clicar em 'Excluir'
+E comfirma a exclusao
+Entao o produto deve ser removido da lista
+
+Cenario: cancelar cadastro de produto
+Dado que estou na tela de cadastro de produtos
+Quando preencher os dados do produto
+E clicar em 'cancelar'
+Entao o cadastro nao deve ser realizado
+
 
